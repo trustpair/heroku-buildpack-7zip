@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+# Fail fast
+set -e
+
+# Debug
+# set -x
+
+BUILD_DIR=$1
+VENDOR_DIR="$BUILD_DIR/vendor"
+
+mkdir -p $VENDOR_DIR
+mkdir -p $(dirname $PROFILE_PATH)
+
+echo "-----> Fetching and vendoring p7zip"
+echo "       Using p7zip version: p7zip_15.14.1"
+curl "https://s3-ap-southeast-2.amazonaws.com/file.blueport.io/buildpack/p7zip_15.14.1.tar.gz" -s -o - | tar xzf - -C "$VENDOR_DIR"
+mv "$VENDOR_DIR/p7zip_15.14.1" "$VENDOR_DIR/p7zip"
+
+cd "$VENDOR_DIR/p7zip"
+chmod +x install.sh
+./install.sh
