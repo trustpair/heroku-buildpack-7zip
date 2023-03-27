@@ -19,5 +19,6 @@ echo "       Using p7zip version: p7zip_15.14.1"
 curl "https://s3-ap-southeast-2.amazonaws.com/file.blueport.io/buildpack/p7zip_15.14.1.tar.gz" -s -o - | tar xzf - -C "$VENDOR_DIR"
 mv "$VENDOR_DIR/p7zip_15.14.1" "$VENDOR_DIR/p7zip"
 
-chmod +x /app/vendor/p7zip/bin/*
+ls -lah "$VENDOR_DIR/p7zip/bin"
+chmod +x "$VENDOR_DIR/p7zip/bin/*"
 echo "export PATH=\$PATH:/app/vendor/p7zip/bin" >> $PROFILE_PATH
