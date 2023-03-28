@@ -36,7 +36,7 @@ APT_OPTIONS="$APT_OPTIONS -o dir::etc::sourcelist=$APT_SOURCES -o dir::etc::sour
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
 
-topic "Installing 7zip"
+topic "Downloading 7zip package"
 apt-get $APT_OPTIONS -y -d install --reinstall 7zip=$SEVENZIP_VERSION | indent
 
 # Installing the packages
