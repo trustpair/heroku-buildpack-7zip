@@ -48,6 +48,7 @@ mkdir -p $BUILD_DIR/.apt
 # Add symbolik link for 7zz to 7z
 # 7zz is the official name of the 7zip binary
 # 7z is the unofficial name, but since it's used in many scripts, we add it
+topic "Add alias for 7zz to 7z"
 ln -s /app/.apt/usr/bin/7zz $BUILD_DIR/.apt/usr/bin/7z
 
 topic "Writing profile script"
