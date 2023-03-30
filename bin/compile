@@ -16,6 +16,8 @@ function indent() {
   esac
 }
 
+SEVENZIP_VERSION="21.07\*" # Add wildcard to match patch and platform version
+
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
 APT_SOURCELIST_DIR="$CACHE_DIR/apt/sources"   # place custom sources.list here
@@ -34,8 +36,8 @@ APT_OPTIONS="$APT_OPTIONS -o dir::etc::sourcelist=$APT_SOURCES -o dir::etc::sour
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
 
-topic "Installing 7zip"
-apt-get $APT_OPTIONS -y -d install --reinstall 7zip | indent
+topic "Downloading 7zip package"
+apt-get $APT_OPTIONS -y -d install --reinstall 7zip=$SEVENZIP_VERSION | indent
 
 # Installing the packages
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
@@ -48,6 +50,7 @@ mkdir -p $BUILD_DIR/.apt
 # Add symbolik link for 7zz to 7z
 # 7zz is the official name of the 7zip binary
 # 7z is the unofficial name, but since it's used in many scripts, we add it
+topic "Alias 7zz to 7z"
 ln -s /app/.apt/usr/bin/7zz $BUILD_DIR/.apt/usr/bin/7z
 
 topic "Writing profile script"
