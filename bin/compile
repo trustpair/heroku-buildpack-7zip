@@ -16,7 +16,7 @@ function indent() {
   esac
 }
 
-SEVENZIP_VERSION="21.07\*" # Add wildcard to match patch and platform version
+SEVENZIP_VERSION="21.07*" # Add wildcard to match patch and platform version
 
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
 APT_STATE_DIR="$CACHE_DIR/apt/state"
